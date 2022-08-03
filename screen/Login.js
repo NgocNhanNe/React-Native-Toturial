@@ -1,20 +1,27 @@
 import react from "react";
 import { View, StyleSheet, Text , Image, TextInput, TouchableOpacity} from "react-native";
 import UserInput from "../Components/UserInput"
+import {useNavigation} from '@react-navigation/native'
+
 
 const LogIn = () =>{
+    const navigation = useNavigation();
     return (
     <View style={styles.LogIn}>
         <Image style={styles.img} source={require("../assets/logo.png")} />
         <Text style={styles.title}>LOG IN</Text>
+
         <UserInput name = 'Username'></UserInput>
-        <UserInput name = 'Password'></UserInput>
+        <UserInput name = 'Password' secureTextEntry={true}></UserInput>
+
         <TouchableOpacity style={styles.btnLogin}>
             <Text>Login</Text>
         </TouchableOpacity>
+
         <Text style={{marginTop: 20}}>
-            Do not have account? <Text style={{color: 'blue'}}>Register</Text>
+            Do not have account? <Text onPress={() => navigation.navigate('Register')} style={{color: 'blue'}}>Register</Text>
         </Text>
+
         <Text style={{marginTop: 20, color: 'blue'}}>Forgot Password</Text>
     </View>
     );

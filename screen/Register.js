@@ -1,21 +1,26 @@
 import react from "react";
-import { View, StyleSheet, Text , Image, TextInput, TouchableOpacity} from "react-native";
-import UserInput from "../Components/UserInput"
+import { View, StyleSheet, Text , Image, TextInput, TouchableOpacity, ScrollView} from "react-native";
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import UserInput from "../Components/UserInput";
+import {useNavigation} from "@react-navigation/native";
 
-const Register = () =>{
+const Register = ({navigation}) =>{
     return (
-    <View style={styles.LogIn}>
+    <KeyboardAwareScrollView showsVerticalScrollIndicator={true}
+        contentContainerStyle={styles.LogIn}>
         <Image style={styles.img} source={require("../assets/logo.png")} />
         <Text style={styles.title}>REGISTER</Text>
+
         <UserInput name = 'Username'></UserInput>
-        <UserInput name = 'Password'></UserInput>
-        <UserInput name = 'ConfimPassword'></UserInput>
+        <UserInput name = 'Password' secureTextEntry={true}></UserInput>
+        <UserInput name = 'ConfimPassword' secureTextEntry={true}/>
         <UserInput name = 'Full Name'></UserInput>
         <UserInput name = 'Address'></UserInput>
+
         <TouchableOpacity style={styles.btnLogin}>
-            <Text>Register</Text>
+            <Text onPress={() => navigation.navigate('LogIn')}>Register</Text>
         </TouchableOpacity>
-    </View>
+    </KeyboardAwareScrollView>
     );
 }
 
@@ -43,6 +48,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'orange',
         marginTop: 50,
         borderRadius: 20
-    }
+    },
+    // boderReg: {
+    //     width: "100%",
+    //     height: 500,
+    //     borderStyle: 'solid',
+    //     borderWidth: 0.5,
+    //     borderColor: 'black'
+    // }
 });
 export default Register;   

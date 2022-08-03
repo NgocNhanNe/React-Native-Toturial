@@ -1,10 +1,10 @@
 import react from "react";
 import { View, StyleSheet, Text , Image, TextInput, TouchableOpacity} from "react-native";
-const UserInput = ({name}) => {
+const UserInput = ({name, secureTextEntry}) => {
     return (
         <View>
         <Text style={{width: "100%", marginTop: 20, fontWeight: '500' }}>{name}</Text>
-        <TextInput style={styles.input} />
+        <TextInput secureTextEntry={secureTextEntry} style={styles.input} />
     </View>
     );
 };
