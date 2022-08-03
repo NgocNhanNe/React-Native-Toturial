@@ -1,4 +1,4 @@
-import react from "react";
+import react, {useState} from "react";
 import { View, StyleSheet, Text , Image, TextInput, TouchableOpacity} from "react-native";
 import UserInput from "../Components/UserInput"
 import {useNavigation} from '@react-navigation/native'
@@ -6,15 +6,34 @@ import {useNavigation} from '@react-navigation/native'
 
 const LogIn = () =>{
     const navigation = useNavigation();
+    const [username, setUsername] = useState("");
+    const [password1, setPassword1] = useState("");
+    const [loading, setLoading] = useState("");
+
+    const handleLogin = async () => {
+        setLoading(true);
+        if(!username || !password1) {
+            alert("All field should not be empty!");
+            setLoading(false);
+            return;
+        }
+        try {
+            alert("Sign in successfully!");
+        }
+        catch (err) {
+            alert("Sign in fail!");
+        }
+    };
+
     return (
     <View style={styles.LogIn}>
         <Image style={styles.img} source={require("../assets/logo.png")} />
         <Text style={styles.title}>LOG IN</Text>
 
-        <UserInput name = 'Username'></UserInput>
-        <UserInput name = 'Password' secureTextEntry={true}></UserInput>
+        <UserInput name = 'Username' value={username} setValue={setUsername}></UserInput>
+        <UserInput name = 'Password' secureTextEntry={true} value={password1} setValue={setPassword1}></UserInput>
 
-        <TouchableOpacity style={styles.btnLogin}>
+        <TouchableOpacity style={styles.btnLogin}  onPress={() => handleLogin()}>
             <Text>Login</Text>
         </TouchableOpacity>
 
